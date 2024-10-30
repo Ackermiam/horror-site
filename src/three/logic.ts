@@ -34,7 +34,7 @@ export class Logic {
 
     const loader = new GLTFLoader();
 
-    loader.load("/models/scene.gltf", (gltf: any) => {
+    loader.load("/horror-site/models/scene.gltf", (gltf: any) => {
       this.mesh = gltf.scene;
       this.animation = gltf.animations
       this.scene.add(this.mesh);
