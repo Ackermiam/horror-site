@@ -6,7 +6,7 @@ import {
   PointLight,
   DirectionalLight,
   AnimationMixer,
-  Clock
+  Clock,
 } from "three";
 
 import { useScroll } from "../composable/useScroll";
@@ -22,23 +22,23 @@ export class Logic {
   mixer: AnimationMixer | null = null;
   clock = new Clock();
   animation: any;
+  width: number;
 
   constructor(ref: HTMLElement) {
     isScrollDown();
+    const { width, height } = ref.getBoundingClientRect();
+    this.width = width;
     this.scene = new Scene();
-    this.camera = new PerspectiveCamera(
-      45,
-      window.innerWidth / window.innerHeight
-    );
+    this.camera = new PerspectiveCamera(45, width / height);
     this.camera.position.set(0, 1, 3);
 
     const loader = new GLTFLoader();
 
     loader.load("/horror-site/models/scene.gltf", (gltf: any) => {
       this.mesh = gltf.scene;
-      this.animation = gltf.animations
+      this.animation = gltf.animations;
       this.scene.add(this.mesh);
-      this.mesh.translateY(-.5)
+      this.mesh.translateY(-0.5);
 
       if (gltf.animations.length > 0) {
         this.mixer = new AnimationMixer(this.mesh);
@@ -48,7 +48,7 @@ export class Logic {
     });
 
     this.renderer = new WebGLRenderer({ antialias: true });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(width, height);
     this.renderer.setClearColor(0x000000, 0);
     ref.appendChild(this.renderer.domElement);
 
@@ -72,10 +72,13 @@ export class Logic {
     directionalLight.position.set(0, 10, 10).normalize();
     this.scene.add(directionalLight);
 
-    window.addEventListener('scroll', () => {
+    this.setView();
+
+    this.registerEventListeners();
+    window.addEventListener("scroll", () => {
       this.move();
       this.scale();
-    })
+    });
 
     this.tick();
   }
@@ -93,18 +96,36 @@ export class Logic {
 
   move() {
     if (scrollDown.value === true) {
-      this.mesh.rotateY(-0.05);
+      this.mesh.rotateY(this.width > 900 ? -0.05 : -0.01);
     } else {
-      this.mesh.rotateY(0.05);
+      this.mesh.rotateY(this.width > 900 ? 0.05 : 0.01);
     }
   }
 
   scale() {
-    if(this.mesh.scale.x <= 2.4) {
-      this.mesh.scale.x += 0.015
-      this.mesh.scale.y += 0.015
-      this.mesh.scale.z += 0.015
+    if (this.width > 900 && this.mesh.scale.x <= 2.4) {
+      this.mesh.scale.x += 0.015;
+      this.mesh.scale.y += 0.015;
+      this.mesh.scale.z += 0.015;
       this.mesh.translateY(-0.02);
     }
+    if (this.width < 900 && this.mesh.scale.x <= 1.2) {
+      this.mesh.scale.x += 0.008;
+      this.mesh.scale.y += 0.008;
+      this.mesh.scale.z += 0.008;
+      this.mesh.translateY(-0.013);
+    }
+  }
+
+  setView() {
+    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  registerEventListeners() {
+    window.onresize = () => {
+      this.setView();
+    };
   }
 }
