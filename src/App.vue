@@ -1,6 +1,6 @@
 <template>
   <section class="Section">
-    <div ref="three"></div>
+    <div ref="three" class="three"></div>
     <h1 class="firsttitle">Acker'Prod</h1>
     <h1 class="secondtitle">Acker'Prod</h1>
     <h1 class="thirdtitle">Acker'Prod</h1>
@@ -73,6 +73,7 @@ h3 {
   line-height: 0.7em;
   margin: 0 0 0.5em 0;
   color: rgb(255, 145, 0);
+  z-index: 3;
 }
 
 p {
@@ -80,6 +81,7 @@ p {
   font-family: "Archivo";
   font-weight: 700;
   color: rgb(83, 13, 13);
+  z-index: -3;
 }
 
 .firsttitle {
@@ -103,14 +105,14 @@ p {
 .Presentation {
   z-index: -1;
   position: absolute;
-  top: 1250px;
+  top: 1000px;
   padding: 0 30px;
 }
 
 .PresentationProject {
   z-index: -1;
   position: absolute;
-  top: 2250px;
+  top: 2000px;
   padding: 0 30px;
   text-align: right;
 }

@@ -96,9 +96,9 @@ export class Logic {
 
   move() {
     if (scrollDown.value === true) {
-      this.mesh.rotateY(this.width > 900 ? -0.05 : -0.01);
+      this.mesh.rotateY(this.width > 900 ? -0.05 : -0.015);
     } else {
-      this.mesh.rotateY(this.width > 900 ? 0.05 : 0.01);
+      this.mesh.rotateY(this.width > 900 ? 0.05 : 0.015);
     }
   }
 
