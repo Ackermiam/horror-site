@@ -72,11 +72,9 @@ export class Logic {
     directionalLight.position.set(0, 10, 10).normalize();
     this.scene.add(directionalLight);
 
-    window.addEventListener('scroll', (e) => {
-      console.log(e.target);
+    window.addEventListener('scroll', () => {
       this.move();
       this.scale();
-      //this.translate();
     })
 
     this.tick();
@@ -84,9 +82,6 @@ export class Logic {
 
   tick() {
     this.renderer.render(this.scene, this.camera);
-    if (this.mesh) {
-      //this.move();
-    }
     if (this.mixer) {
       const delta = this.clock.getDelta();
       this.mixer.update(delta);
@@ -105,7 +100,6 @@ export class Logic {
   }
 
   scale() {
-
     if(this.mesh.scale.x <= 2.4) {
       this.mesh.scale.x += 0.015
       this.mesh.scale.y += 0.015
