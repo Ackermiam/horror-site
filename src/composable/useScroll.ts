@@ -3,10 +3,8 @@ import { ref } from "vue";
 const scrollDown = ref(false);
 const lastScroll = ref(0);
 
-
 export const useScroll = () => {
   const isScrollDown = () => {
-
     window.addEventListener("scroll", () => {
       const newScroll = window.scrollY;
 
@@ -18,6 +16,6 @@ export const useScroll = () => {
 
   return {
     scrollDown,
-    isScrollDown
+    isScrollDown,
   };
 };
