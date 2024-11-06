@@ -30,12 +30,14 @@
         témoins de mon apprentissage.
       </p>
     </div>
+    <Slider />
   </section>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { Logic } from "./three/logic";
+import Slider from "./components/Slider.vue";
 
 const three = ref();
 
@@ -46,7 +48,7 @@ onMounted(() => {
 
 <style scoped>
 .Section {
-  height: 500vh;
+  height: 610vh;
   width: 100vw;
 }
 
