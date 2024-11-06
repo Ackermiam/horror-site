@@ -1,18 +1,18 @@
 <template>
-  <section class="FourthSection">
+  <section class="Slider">
     <div
-      class="FourthSection__container"
+      class="Slider__container"
       ref="scrollableContent"
     >
-      <div class="FourthSection__slider" ref="animatedContent">
+      <div class="Slider__slider" ref="animatedContent">
         <div
           v-for="(slide, index) in slides"
           :key="index"
-          class="FourthSection__slider__project"
+          class="Slider__slider__project"
           :style="{ background: `url(${slide.background})` }"
           @click="redirect(slide.url)"
         >
-          <h3 class="FourthSection__slider__project__title">
+          <h3 class="Slider__slider__project__title">
             {{ slide.name }}
           </h3>
         </div>
@@ -74,7 +74,7 @@ const redirect = (url: string) => {
 onMounted(() => {
   if (scrollableContent.value && animatedContent.value) {
     const firstSlide = animatedContent.value.querySelector(
-      ".FourthSection__slider__project"
+      ".Slider__slider__project"
     );
     if (firstSlide) {
       scrollableContent.value.style.setProperty(
@@ -95,7 +95,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-.FourthSection {
+.Slider {
   display: flex;
   align-items: start;
   position: absolute;
