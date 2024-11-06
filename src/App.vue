@@ -30,7 +30,7 @@
         témoins de mon apprentissage.
       </p>
     </div>
-    <Slider />
+    <Slider class="Slider"/>
   </section>
 </template>
 
@@ -48,8 +48,17 @@ onMounted(() => {
 
 <style scoped>
 .Section {
-  height: 610vh;
+  height: 565vh;
   width: 100vw;
+}
+
+@media (max-width: 900px) {
+  .Slider {
+    display: none;
+  }
+  .Section {
+  height: 315vh;
+  }
 }
 
 div {

@@ -107,7 +107,7 @@ onUnmounted(() => {
     @media (min-width: 900px) {
       display: flex;
       position: relative;
-      height: 290vh;
+      height: 250vh;
     }
   }
 
