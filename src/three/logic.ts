@@ -2,7 +2,6 @@ import {
   Scene,
   WebGLRenderer,
   PerspectiveCamera,
-  Object3D,
   PointLight,
   DirectionalLight,
   AnimationMixer,
